@@ -1,3 +1,7 @@
+import SimpleLightbox from 'simplelightbox';
+// Додатковий імпорт стилів
+import 'simplelightbox/dist/simple-lightbox.min.css';
+
 const images = [
   {
     preview:
@@ -70,29 +74,19 @@ const listItem = images.map(image => {
   const link = document.createElement('a');
   link.classList.add('gallery-link');
   link.href = image.original;
-  //   link.addEventListener('click', event => event.preventDefault());
   li.append(link);
   const img = document.createElement('img');
   img.classList.add('gallery-image');
   img.src = image.preview;
-  img.dataset.source = image.original;
   img.alt = image.description;
   link.append(img);
   return li;
 });
 list.append(...listItem);
 
-// list.addEventListener('click', selectedImg);
-
-function selectedImg(event) {
-  if (event.target.nodeName !== 'IMG') {
-    return;
-  }
-  //   const selectedImg = event.target.dataset.source;
-  //   console.log(selectedImg);
-  //   const modal = basicLightbox.create(
-  //     `<img src="${selectedImg}" class="modalImg">`,
-  //     { className: 'modal' }
-  //   );
-  //   modal.show();
-}
+let gallery = new SimpleLightbox('.gallery a', {
+  captions: true,
+  captionPosition: 'bottom',
+  captionDelay: 250,
+  captionsData: 'alt',
+});

@@ -9,7 +9,7 @@ if (savedformData !== null) {
 feedbackForm.addEventListener('input', dataForm);
 function dataForm(event) {
   const input = event.target;
-  formData[input.name] = input.value;
+  formData[input.name] = input.value.trim();
   localStorage.setItem('feedback-form-state', JSON.stringify(formData));
 }
 feedbackForm.addEventListener('submit', submitForm);
